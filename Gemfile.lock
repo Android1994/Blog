@@ -1,8 +1,3 @@
-PATH
-  remote: .
-  specs:
-    jekyll-theme-prologue (0.3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -40,8 +35,11 @@ GEM
       pathutil (~> 0.9)
       rouge (>= 1.7, < 4)
       safe_yaml (~> 1.0)
+    jekyll-feed (0.9.3)
+      jekyll (~> 3.3)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
+    jekyll-theme-prologue (0.3.2)
     jekyll-watch (2.0.0)
       listen (~> 3.0)
     kramdown (1.16.2)
@@ -74,9 +72,10 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
-  bundler (~> 1.12)
-  jekyll (~> 3.3)
-  jekyll-theme-prologue!
+  jekyll (~> 3.7.3)
+  jekyll-feed (~> 0.6)
+  jekyll-theme-prologue
+  tzinfo-data
 
 BUNDLED WITH
    1.16.1
