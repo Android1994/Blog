@@ -30,11 +30,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: BinMoon
+title: Bin Moon
 subtitle: Mostly Harmless
 description: >- # this means to ignore newlines until "baseurl:"
-  This is the demo site for a Jekyll theme version of
-  HTML5 UP's sleek, responsive site template Prologue.
+  This is the blog of IceCrow.
 author: IceCrow
 email: icecrow@t.shu.edu.cn
 avatar: assets/images/avatar.jpg
@@ -48,7 +47,7 @@ facebook_url:
 github_url: https://github.com/Android1994
 googleplus_url:
 instagram_url:
-linkedin_url:
+linkedin_url: https://www.linkedin.com/in/subaru-lai-56b936134/
 pinterest_url:
 slack_url:
 twitter_url:
