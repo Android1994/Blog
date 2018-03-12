@@ -43,7 +43,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 
 # Social settings
-facebook_url:
+facebook_url: https://www.facebook.com/laichuanbin
 github_url: https://github.com/Android1994
 googleplus_url:
 instagram_url:
