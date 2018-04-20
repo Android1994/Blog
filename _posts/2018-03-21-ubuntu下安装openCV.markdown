@@ -57,7 +57,7 @@ $ make -j8
 $ make install
 ```
 
-### （四、设置链接库共享）
+### 四、设置链接库共享
 先在文件/etc/ld.so.conf中添加内容： /usr/local/lib（这个跟安装目录有关， {CMAKE_INSTALL_PREFIX}/lib），也可以在/etc/ld.so.conf.d 目录下增加一个conf文件（可以命名为 opencv.conf），同样添加内容： /usr/local/lib
 
 然后执行:
@@ -76,4 +76,4 @@ export  PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 $ pkg-config --libs opencv
 ```
 
->note: 四和五的作用有待确认，我安装的时候没做第四步也没啥问题
+>note: 五的作用有待确认，我安装的时候没做第五步也没啥问题
