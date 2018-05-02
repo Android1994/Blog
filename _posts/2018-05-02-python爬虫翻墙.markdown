@@ -1,0 +1,98 @@
+---
+title:  "python爬虫翻墙"
+author: Subaru Lai
+date:   2018-05-02 10:08:13 +0800
+layout: post
+---
+
+最近在做kaggle的一个比赛，用到的训练数据需要翻墙下载，下面记录了如何使用ss和polipo进行全局代理，以及python爬虫的代理设置。
+
+### 一、配置shadowsocks代理
+
+- 安装shadowsocks（装客户端也行）:
+```
+$ sudo pp install shadowsocks
+```
+
+- 配置shadowsocks（新建shadowsocks.json文件，并写入如下内容）：
+```
+{
+  "server": "{your-server}",
+  "server_port": 40002,
+  "local_port": 1080,
+  "password": "{your-password}",
+  "timeout": 600,
+  "method": "aes-256-cfb"
+}
+```
+
+- 启动shadowsocks服务（机器重启后要重新执行）：
+```
+$ sudo sslocal -c shadowsocks.json -d start
+```
+
+### 二、配置全局代理
+shadowsocks是socks5代理，需配置http/https代理，可通过polipo实现
+
+- 安装polipo：
+```
+$ sudo apt-get install polipo
+```
+
+- 修改polipo的配置文件`/etc/polipo/config`：
+```
+logSyslog = true
+logFile = /var/log/polipo/polipo.log
+proxyAddress = "0.0.0.0"
+socksParentProxy = "127.0.0.1:1080"
+socksProxyType = socks5
+chunkHighMark = 50331648
+objectHighMark = 16384
+serverMaxSlots = 64
+serverSlots = 16
+serverSlots1 = 32
+```
+
+- 重启polipo服务：
+```
+$ sudo /etc/init.d/polipo restart
+```
+
+- 配置http代理（机器重启后需重新执行）：
+```
+export http_proxy="http://127.0.0.1:8123/"
+```
+
+- 测试：
+```
+curl www.google.com
+```
+
+### 三、python爬虫设置代理
+一种是使用urllib库，另一种是使用requests库。headers的作用还有待进一步调查：
+```
+import urllib.request as request
+import requests
+
+proxies = {
+    'https': 'https://127.0.0.1:8123',
+    'http': 'http://127.0.0.1:8123'
+}
+headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+}
+
+print('--------------使用urllib--------------')
+google_url = 'https://www.google.com'
+opener = request.build_opener(request.ProxyHandler(proxies))
+request.install_opener(opener)
+
+req = request.Request(google_url, headers=headers)
+response = request.urlopen(req)
+
+print(response.read().decode())
+
+print('--------------使用requests--------------')
+response = requests.get(google_url, proxies=proxies)
+print(response.text)
+```
