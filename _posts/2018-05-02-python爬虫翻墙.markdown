@@ -11,7 +11,7 @@ layout: post
 
 - 安装shadowsocks（装客户端也行）:
 ```
-$ sudo pp install shadowsocks
+$ sudo pip install shadowsocks
 ```
 
 - 配置shadowsocks（新建shadowsocks.json文件，并写入如下内容）：
